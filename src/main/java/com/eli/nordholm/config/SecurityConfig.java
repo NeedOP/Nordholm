@@ -12,9 +12,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableMethodSecurity //  THIS ENABLES @PreAuthorize
+@EnableMethodSecurity
 public class SecurityConfig {
 
+    // ✅ ADD THIS BACK (VERY IMPORTANT)
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -25,15 +26,21 @@ public class SecurityConfig {
 
         http
                 .csrf(csrf -> csrf.disable())
+
+                .cors(cors -> {})
+
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/files/**", "/uploads/**").permitAll()
-
+                        .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()
                 )
+
+                .httpBasic(httpBasic -> {})
+
                 .addFilterBefore(new JwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
