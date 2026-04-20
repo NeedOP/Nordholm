@@ -30,7 +30,8 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/files/**").permitAll()
+                        .requestMatchers("/files/**", "/uploads/**").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
