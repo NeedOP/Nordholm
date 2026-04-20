@@ -14,11 +14,11 @@ public class MessageService {
 
     private final MessageRepository messageRepository;
 
-    public Message sendMessage(Long senderId, Long receiverId, String text, String fileUrl) {
+    public Message sendMessage(Long conversationId, Long senderId, String text, String fileUrl) {
 
         Message message = new Message();
+        message.setConversationId(conversationId);
         message.setSenderId(senderId);
-        message.setReceiverId(receiverId);
         message.setText(text);
         message.setFileUrl(fileUrl);
         message.setCreatedAt(LocalDateTime.now());
@@ -26,7 +26,7 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
-    public List<Message> getConversation(Long user1, Long user2) {
-        return messageRepository.findBySenderIdAndReceiverId(user1, user2);
+    public List<Message> getMessages(Long conversationId) {
+        return messageRepository.findByConversationId(conversationId);
     }
 }

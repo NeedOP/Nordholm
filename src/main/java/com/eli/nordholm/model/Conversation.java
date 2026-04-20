@@ -9,18 +9,14 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Message {
+public class Conversation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long conversationId;   // 🔥 NEW
-
-    private Long senderId;
-
-    private String text;
-    private String fileUrl;
+    private Long user1Id;
+    private Long user2Id;
 
     private LocalDateTime createdAt;
 }
