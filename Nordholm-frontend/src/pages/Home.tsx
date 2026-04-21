@@ -1,7 +1,7 @@
 function Home() {
     return (
         <div>
-            <h1>Welcome to Faktura App</h1>
+            <h1>Welcome to Faktura App test</h1>
         </div>
     );
 }
