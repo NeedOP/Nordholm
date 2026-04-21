@@ -7,6 +7,6 @@ COPY . .
 RUN chmod +x gradlew
 
 
-RUN ./gradlew build -x test
+RUN ./gradlew clean build -x test
 
-CMD ["java", "-jar", "build/libs/*.jar"]
+CMD ["sh", "-c", "java -jar $(ls build/libs/*.jar | head -n 1)"]
