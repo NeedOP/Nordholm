@@ -7,45 +7,81 @@ interface Message {
     senderId: number;
     text: string;
     fileUrl?: string;
+    createdAt?: string;
 }
 
 interface User {
-    id: number;
+    userId: number;
     email: string;
+    lastMessage: string;
 }
 
 function Messages() {
     const [users, setUsers] = useState<User[]>([]);
-    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [selectedUser, setSelectedUser] = useState<any>(null);
     const [messages, setMessages] = useState<Message[]>([]);
     const [text, setText] = useState("");
-    const [conversationId, setConversationId] = useState<number | null>(null);
+
+    // 🔥 FILE STATE (THIS WAS MISSING)
     const [file, setFile] = useState<File | null>(null);
 
-    // 🔥 LOAD USERS
+    const [conversationId, setConversationId] = useState<number | null>(null);
+
+    // USERS
     const fetchUsers = async () => {
         const res = await API.get("/users");
         setUsers(res.data);
     };
 
-    // 🔥 OPEN CHAT
+    // OPEN CHAT
     const openChat = async (user: User) => {
         setSelectedUser(user);
 
-        const res = await API.get(`/conversations/with/${user.id}`);
+        const res = await API.get(`/conversations/with/${user.userId}`);
         const convoId = res.data.id;
 
         setConversationId(convoId);
         fetchMessages(convoId);
     };
 
-    // 🔥 LOAD MESSAGES
+    // MESSAGES
     const fetchMessages = async (convoId: number) => {
         const res = await API.get(`/messages/conversation/${convoId}`);
         setMessages(res.data);
     };
 
-    // 🔥 AUTO REFRESH (REAL-TIME FEEL)
+    // SEND MESSAGE (WITH FILE SUPPORT)
+    const sendMessage = async () => {
+        if (!selectedUser || !conversationId) return;
+
+        let fileUrl = null;
+
+        // 📎 upload file first if exists
+        if (file) {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const res = await API.post("/files/upload", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            fileUrl = res.data;
+        }
+
+        await API.post(`/messages/send/${selectedUser.userId}`, {
+            text,
+            fileUrl,
+        });
+
+        setText("");
+        setFile(null);
+
+        fetchMessages(conversationId);
+    };
+
+    // REAL-TIME REFRESH
     useEffect(() => {
         if (!conversationId) return;
 
@@ -56,117 +92,74 @@ function Messages() {
         return () => clearInterval(interval);
     }, [conversationId]);
 
-    // 🔥 SEND MESSAGE WITH FILE
-    const sendMessage = async () => {
-        if (!selectedUser) return;
-
-        let fileUrl = null;
-
-        // 📎 Upload file first
-        if (file) {
-            const formData = new FormData();
-            formData.append("file", file);
-
-            const res = await API.post("/files/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            });
-
-            fileUrl = res.data;
-        }
-
-        // 💬 Send message
-        await API.post(`/messages/send/${selectedUser.id}`, {
-            text,
-            fileUrl
-        });
-
-        setText("");
-        setFile(null);
-
-        if (conversationId) {
-            fetchMessages(conversationId);
-        }
-    };
-
     useEffect(() => {
         fetchUsers();
     }, []);
 
     return (
         <div className="app-container">
+
             {/* SIDEBAR */}
             <div className="sidebar">
                 <h3>Chats</h3>
 
                 {users.map((user) => (
                     <div
-                        key={user.id}
+                        key={user.userId}
                         className={`user-item ${
-                            selectedUser?.id === user.id ? "active" : ""
+                            selectedUser?.userId === user.userId ? "active" : ""
                         }`}
                         onClick={() => openChat(user)}
                     >
-                        {user.email}
+                        <div style={{ fontWeight: "bold" }}>
+                            {user.email}
+                        </div>
+                        <div style={{ fontSize: "12px", opacity: 0.7 }}>
+                            {user.lastMessage}
+                        </div>
                     </div>
                 ))}
             </div>
 
             {/* CHAT AREA */}
             <div className="chat-area">
+
                 <div className="messages">
-                    {messages.map((msg) => {
-                        const isImage =
-                            msg.fileUrl &&
-                            (msg.fileUrl.endsWith(".png") ||
-                                msg.fileUrl.endsWith(".jpg") ||
-                                msg.fileUrl.endsWith(".jpeg"));
+                    {messages.map((msg) => (
+                        <div
+                            key={msg.id}
+                            className={`message ${
+                                msg.senderId === selectedUser?.userId
+                                    ? "received"
+                                    : "sent"
+                            }`}
+                        >
+                            <p>{msg.text}</p>
 
-                        return (
-                            <div
-                                key={msg.id}
-                                className={`message ${
-                                    msg.senderId === selectedUser?.id
-                                        ? "received"
-                                        : "sent"
-                                }`}
-                            >
-                                <p>{msg.text}</p>
-
-                                {/* 🖼 IMAGE PREVIEW */}
-                                {isImage && (
-                                    <img
-                                        src={`http://localhost:8080/uploads/${msg.fileUrl}`}
-                                        alt="img"
-                                        style={{ maxWidth: "200px", marginTop: "5px" }}
-                                    />
-                                )}
-
-                                {/* 📎 FILE DOWNLOAD */}
-                                {msg.fileUrl && !isImage && (
-                                    <a
-                                        href={`http://localhost:8080/uploads/${msg.fileUrl}`}
-                                        target="_blank"
-                                    >
-                                        📎 Download file
-                                    </a>
-                                )}
-                            </div>
-                        );
-                    })}
+                            {/* FILE DISPLAY */}
+                            {msg.fileUrl && (
+                                <a
+                                    href={`http://localhost:8080/uploads/${msg.fileUrl}`}
+                                    target="_blank"
+                                >
+                                    📎 download file
+                                </a>
+                            )}
+                        </div>
+                    ))}
                 </div>
 
-                {/* INPUT AREA */}
+                {/* INPUT AREA (RESTORED FILE UPLOAD) */}
                 {selectedUser && (
                     <div className="input-area">
+
                         <input
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             placeholder="Type message..."
                         />
 
-                        {/* 📎 FILE INPUT */}
+                        {/* 📎 FILE UPLOAD INPUT (THIS WAS MISSING) */}
                         <input
                             type="file"
                             onChange={(e) => {
@@ -176,9 +169,12 @@ function Messages() {
                             }}
                         />
 
-                        <button onClick={sendMessage}>Send</button>
+                        <button onClick={sendMessage}>
+                            Send
+                        </button>
                     </div>
                 )}
+
             </div>
         </div>
     );

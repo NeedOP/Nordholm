@@ -15,12 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/messages")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class MessageController {
 
     private final MessageService messageService;
     private final ConversationService conversationService;
     private final UserRepository userRepository;
 
+    // ✅ SEND MESSAGE (FIXED)
     @PostMapping("/send/{receiverId}")
     public Message send(
             @PathVariable Long receiverId,
@@ -42,6 +44,7 @@ public class MessageController {
         );
     }
 
+    // ✅ GET MESSAGES
     @GetMapping("/conversation/{conversationId}")
     public List<Message> getConversation(@PathVariable Long conversationId) {
         return messageService.getMessages(conversationId);

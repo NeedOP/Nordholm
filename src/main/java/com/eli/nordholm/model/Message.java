@@ -15,11 +15,12 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long conversationId;   // 🔥 NEW
+    private Long conversationId;
 
     private Long senderId;
 
     private String text;
+
     private String fileUrl;
 
     private LocalDateTime createdAt;

@@ -81,3 +81,7 @@
     color: white;
     cursor: pointer;
 }
+.user-item.unread {
+    font-weight: bold;
+    border-left: 4px solid red;
+}
