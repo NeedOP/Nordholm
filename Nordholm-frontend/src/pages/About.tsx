@@ -21,7 +21,9 @@ function About() {
                 advanced invoice management.
             </p>
         </div>
+        
     );
+
 }
 
 export default About;

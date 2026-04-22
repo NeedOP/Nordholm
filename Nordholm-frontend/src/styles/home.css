@@ -1,0 +1,64 @@
+.home {
+    text-align: center;
+}
+
+/* HERO */
+.hero {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #934646, #a2c459);
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.hero button {
+    padding: 12px 20px;
+    background: white;
+    color: black;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.hero button:hover {
+    transform: scale(1.05);
+}
+
+/* SERVICES */
+.services {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    justify-content: center;
+}
+
+.card {
+    background: #beb9b9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: #1a1a1a;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+}

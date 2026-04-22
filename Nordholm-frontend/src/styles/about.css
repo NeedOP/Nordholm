@@ -8,3 +8,10 @@
 .about-container h1 {
     margin-bottom: 20px;
 }
+.about-container h1 {
+    color: black;
+}
+
+.about-container p {
+    color: black;
+}
