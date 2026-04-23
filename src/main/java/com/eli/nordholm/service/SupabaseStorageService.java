@@ -19,8 +19,8 @@ public class SupabaseStorageService {
 
     private final String BUCKET = "uploads";
 
-    public SupabaseStorageService() {
-        this.webClient = WebClient.builder().build();
+    public SupabaseStorageService(WebClient webClient) {
+        this.webClient = webClient;
     }
 
     public String uploadFile(byte[] fileBytes, String fileName) {

@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:8080"
+    baseURL: "https://nordholm-1.onrender.com "
 });
 
-// 🔐 Automatically attach JWT
+// JWT https://nordholm-1.onrender.com http://localhost:8080
+
 API.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
 
