@@ -11,10 +11,10 @@ public class SupabaseStorageService {
 
     private final WebClient webClient;
 
-    @Value("${supabase.url}")
+    @Value("${SUPABASE_URL}")
     private String supabaseUrl;
 
-    @Value("${supabase.service.key}")
+    @Value("${SUPABASE_SERVICE_KEY}")
     private String serviceKey;
 
     private final String BUCKET = "uploads";
