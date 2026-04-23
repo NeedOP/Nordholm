@@ -21,7 +21,11 @@ public class SupabaseStorageService {
 
     public SupabaseStorageService(WebClient webClient) {
         this.webClient = webClient;
+
+        System.out.println("SUPABASE URL = " + supabaseUrl);
+        System.out.println("SUPABASE KEY NULL? " + (serviceKey == null));
     }
+
 
     public String uploadFile(byte[] fileBytes, String fileName) {
 
