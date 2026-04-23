@@ -18,14 +18,26 @@ interface User {
 
 function Messages() {
     const [users, setUsers] = useState<User[]>([]);
-    const [selectedUser, setSelectedUser] = useState<any>(null);
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [messages, setMessages] = useState<Message[]>([]);
     const [text, setText] = useState("");
-
-    // 🔥 FILE STATE (THIS WAS MISSING)
     const [file, setFile] = useState<File | null>(null);
-
     const [conversationId, setConversationId] = useState<number | null>(null);
+
+    // GET CURRENT USER ID FROM TOKEN
+    const getCurrentUserId = () => {
+        const token = localStorage.getItem("token");
+        if (!token) return null;
+
+        try {
+            const payload = JSON.parse(atob(token.split(".")[1]));
+            return payload.userId; // make sure backend sends this
+        } catch {
+            return null;
+        }
+    };
+
+    const currentUserId = getCurrentUserId();
 
     // USERS
     const fetchUsers = async () => {
@@ -50,38 +62,43 @@ function Messages() {
         setMessages(res.data);
     };
 
-    // SEND MESSAGE (WITH FILE SUPPORT)
+    // SEND MESSAGE
     const sendMessage = async () => {
         if (!selectedUser || !conversationId) return;
 
         let fileUrl = null;
 
-        // 📎 upload file first if exists
-        if (file) {
-            const formData = new FormData();
-            formData.append("file", file);
+        try {
+            //  upload file if exists
+            if (file) {
+                const formData = new FormData();
+                formData.append("file", file);
 
-            const res = await API.post("/files/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
+                const res = await API.post("/files/upload", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+
+                fileUrl = res.data; // ✅ full URL now
+            }
+
+            await API.post(`/messages/send/${selectedUser.userId}`, {
+                text,
+                fileUrl,
             });
 
-            fileUrl = res.data;
+            setText("");
+            setFile(null);
+
+            fetchMessages(conversationId);
+
+        } catch (err) {
+            console.error("Send message error:", err);
         }
-
-        await API.post(`/messages/send/${selectedUser.userId}`, {
-            text,
-            fileUrl,
-        });
-
-        setText("");
-        setFile(null);
-
-        fetchMessages(conversationId);
     };
 
-    // REAL-TIME REFRESH
+    // AUTO REFRESH
     useEffect(() => {
         if (!conversationId) return;
 
@@ -125,31 +142,32 @@ function Messages() {
             <div className="chat-area">
 
                 <div className="messages">
-                    {messages.map((msg) => (
-                        <div
-                            key={msg.id}
-                            className={`message ${
-                                msg.senderId === selectedUser?.userId
-                                    ? "received"
-                                    : "sent"
-                            }`}
-                        >
-                            <p>{msg.text}</p>
+                    {messages.map((msg) => {
+                        const isSent = msg.senderId === currentUserId;
 
-                            {/* FILE DISPLAY */}
-                            {msg.fileUrl && (
-                                <a
-                                    href={`http://localhost:8080/uploads/${msg.fileUrl}`}
-                                    target="_blank"
-                                >
-                                    📎 download file
-                                </a>
-                            )}
-                        </div>
-                    ))}
+                        return (
+                            <div
+                                key={msg.id}
+                                className={`message ${isSent ? "sent" : "received"}`}
+                            >
+                                <p>{msg.text}</p>
+
+                                {/*  FIXED FILE LINK */}
+                                {msg.fileUrl && (
+                                    <a
+                                        href={msg.fileUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        📎 Download file
+                                    </a>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
 
-                {/* INPUT AREA (RESTORED FILE UPLOAD) */}
+                {/* INPUT */}
                 {selectedUser && (
                     <div className="input-area">
 
@@ -159,7 +177,7 @@ function Messages() {
                             placeholder="Type message..."
                         />
 
-                        {/* 📎 FILE UPLOAD INPUT (THIS WAS MISSING) */}
+                        {/* FILE INPUT */}
                         <input
                             type="file"
                             onChange={(e) => {
@@ -172,6 +190,7 @@ function Messages() {
                         <button onClick={sendMessage}>
                             Send
                         </button>
+
                     </div>
                 )}
 
