@@ -46,7 +46,6 @@ public class SupabaseStorageService {
     }
 
 
-    // 🔥 FULL SAFE FILE NAME CLEANER
     private String cleanFileName(String fileName) {
 
         if (fileName == null) {

@@ -13,6 +13,11 @@ public class ConversationService {
 
     private final ConversationRepository conversationRepository;
 
+    public Conversation getById(Long id) {
+        return conversationRepository.findById(id)
+                .orElseThrow();
+    }
+
     public Conversation getOrCreateConversation(Long user1, Long user2) {
 
         return conversationRepository

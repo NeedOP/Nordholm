@@ -15,14 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/messages")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5174")
+
 public class MessageController {
 
     private final MessageService messageService;
     private final ConversationService conversationService;
     private final UserRepository userRepository;
 
-    // ✅ SEND MESSAGE (FIXED)
+    // SEND MESSAGE (FIXED)
     @PostMapping("/send/{receiverId}")
     public Message send(
             @PathVariable Long receiverId,
@@ -44,9 +44,25 @@ public class MessageController {
         );
     }
 
-    // ✅ GET MESSAGES
     @GetMapping("/conversation/{conversationId}")
     public List<Message> getConversation(@PathVariable Long conversationId) {
+
+        String email = UserUtil.getCurrentUserEmail();
+
+        User currentUser = userRepository.findByEmail(email)
+                .orElseThrow();
+
+        Conversation conversation = conversationService
+                .getById(conversationId); // we will add this
+
+        // SECURITY CHECK
+        if (!conversation.getUser1Id().equals(currentUser.getId()) &&
+                !conversation.getUser2Id().equals(currentUser.getId())) {
+
+            throw new RuntimeException("Not allowed to view this conversation");
+        }
+
         return messageService.getMessages(conversationId);
     }
+
 }

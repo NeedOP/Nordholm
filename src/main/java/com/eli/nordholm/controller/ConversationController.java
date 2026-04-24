@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/conversations")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5174")
+
 public class ConversationController {
 
     private final ConversationService conversationService;

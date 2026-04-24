@@ -1,0 +1,97 @@
+.auth-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0f0f10;
+    font-family: Arial, sans-serif;
+}
+
+.auth-card {
+    width: 350px;
+    padding: 30px;
+    background: #151516;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.logo {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 28px;
+}
+
+.subtitle {
+    color: #888;
+    margin-bottom: 25px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background: #222;
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+
+.auth-input:focus {
+    outline: 1px solid #4f9cff;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login {
+    background: #4f9cff;
+    color: white;
+}
+
+.register {
+    background: #2b2b2b;
+    color: white;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.error-box {
+    margin-top: 10px;
+    color: #ff5c5c;
+    font-size: 13px;
+}
+
+/* LOADER */
+.loader {
+    margin: 15px auto 0;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #444;
+    border-top: 3px solid #4f9cff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
