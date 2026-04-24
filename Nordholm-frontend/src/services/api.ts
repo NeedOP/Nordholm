@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "https://nordholm-1.onrender.com "
+    baseURL: "https://nordholm-1.onrender.com"
 });
 
 // JWT https://nordholm-1.onrender.com http://localhost:8080

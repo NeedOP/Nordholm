@@ -2,6 +2,7 @@ package com.eli.nordholm.controller;
 
 import com.eli.nordholm.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,9 +14,19 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public String register(@RequestBody AuthRequest request) {
-        return authService.register(request.getEmail(), request.getPassword());
+    public ResponseEntity<?> register(@RequestBody AuthRequest request) {
+        try {
+            return ResponseEntity.ok(
+                    authService.register(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
+
 
     @PostMapping("/login")
     public String login(@RequestBody AuthRequest request) {

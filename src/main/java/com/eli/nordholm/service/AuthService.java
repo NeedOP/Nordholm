@@ -17,8 +17,25 @@ public class AuthService {
 
 
     public String register(String email, String password) {
+
+
+        if (email == null || email.isBlank()) {
+            throw new RuntimeException("Email is required");
+        }
+
+
+        if (!email.contains("@")) {
+            throw new RuntimeException("Invalid email format");
+        }
+
+
         if (userRepository.findByEmail(email).isPresent()) {
             throw new RuntimeException("User already exists");
+        }
+
+
+        if (password == null || password.length() < 8) {
+            throw new RuntimeException("Password must be at least 8 characters");
         }
 
         User user = new User();
@@ -28,8 +45,9 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return "User registered";
+        return "User registered successfully";
     }
+
 
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email)
