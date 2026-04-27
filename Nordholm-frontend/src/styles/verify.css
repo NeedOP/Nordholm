@@ -1,0 +1,58 @@
+.verify-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0f0f10;
+    font-family: Arial, sans-serif;
+}
+
+.verify-card {
+    background: #151516;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 300px;
+    color: white;
+}
+
+.success {
+    color: #4caf50;
+}
+
+.error {
+    color: #ff5c5c;
+}
+
+.small {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background: #4f9cff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* LOADER */
+.loader {
+    margin: 0 auto 15px;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #444;
+    border-top: 3px solid #4f9cff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

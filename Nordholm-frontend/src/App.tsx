@@ -5,6 +5,10 @@ import Messages from "./pages/Messages";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Auth";
+import Verify from "./pages/Verify";
+import ResetPassword from "./pages/ResetPassword";
+
+
 
 function App() {
     return (
@@ -17,6 +21,9 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/messages" element={<Messages />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/verify" element={<Verify />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+
             </Routes>
         </BrowserRouter>
     );
