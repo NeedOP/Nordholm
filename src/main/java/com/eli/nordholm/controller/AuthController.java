@@ -1,5 +1,6 @@
 package com.eli.nordholm.controller;
 
+import com.eli.nordholm.dto.ResetPasswordRequest;
 import com.eli.nordholm.service.EmailService;
 import com.eli.nordholm.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -37,17 +38,18 @@ public class AuthController {
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(
-            @RequestParam String token,
-            @RequestParam String password
-    ) {
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request) {
         try {
-            authService.resetPassword(token, password);
+            authService.resetPassword(
+                    request.getToken(),
+                    request.getPassword()
+            );
             return ResponseEntity.ok("Password updated");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest request) {

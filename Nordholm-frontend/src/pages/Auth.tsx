@@ -55,7 +55,7 @@ function Auth() {
                 err.response?.data ||
                 "Login failed";
 
-            // 🔥 CUSTOM FRIENDLY MESSAGES
+            // CUSTOM FRIENDLY MESSAGES
             if (typeof msg === "string") {
                 if (msg.toLowerCase().includes("verify")) {
                     msg = "⚠️ Please verify your email before logging in.";
@@ -122,7 +122,7 @@ function Auth() {
 
                 </div>
 
-                {/* 🔥 FORGOT PASSWORD */}
+                {/*  FORGOT PASSWORD */}
                 <p
                     className="forgot-password"
                     onClick={() => navigate("/forgot-password")}
