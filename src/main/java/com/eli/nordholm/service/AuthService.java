@@ -29,6 +29,8 @@ public class AuthService {
         VerificationToken vt = verificationTokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Invalid token"));
 
+        String email = vt.getEmail().trim().toLowerCase();
+
         if (vt.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new RuntimeException("Token expired");
         }
@@ -46,6 +48,8 @@ public class AuthService {
         PasswordResetToken resetToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Invalid token"));
 
+        String email = resetToken.getEmail().trim().toLowerCase();
+
         if (resetToken.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new RuntimeException("Token expired");
         }
@@ -58,6 +62,7 @@ public class AuthService {
     }
 
     public void requestPasswordReset(String email) {
+        email = email.trim().toLowerCase();
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -84,6 +89,7 @@ public class AuthService {
 
     public String register(String email, String password) {
 
+        email = email.trim().toLowerCase();
 
         if (email == null || email.isBlank()) {
             throw new RuntimeException("Email is required");
@@ -135,6 +141,8 @@ public class AuthService {
 
 
     public String login(String email, String password) {
+        email = email.trim().toLowerCase();
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

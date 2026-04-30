@@ -13,7 +13,7 @@ function Auth() {
 
     const navigate = useNavigate();
 
-    // ✅ REGISTER
+    //  REGISTER
     const register = async () => {
         setLoading(true);
         setError(null);
@@ -85,7 +85,7 @@ function Auth() {
                     className="auth-input"
                     placeholder="Email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value.trim().toLowerCase())}
                 />
 
                 <input
