@@ -122,7 +122,7 @@ public class AuthService {
         verificationTokenRepository.save(vt);
 
         // SEND EMAIL
-        String link = "https://your-frontend.vercel.app/verify?token=" + token;
+        String link = "https://el-kraft.vercel.app/verify?token=" + token;
 
         emailService.sendEmail(
                 email,
