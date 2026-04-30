@@ -7,6 +7,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Auth";
 import Verify from "./pages/Verify";
 import ResetPassword from "./pages/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 
 
 
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/verify" element={<Verify />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
 
             </Routes>
         </BrowserRouter>

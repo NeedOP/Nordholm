@@ -71,7 +71,7 @@ public class AuthService {
 
         tokenRepository.save(resetToken);
 
-        String link = "https://your-frontend.vercel.app/reset-password?token=" + token;
+        String link = "https://el-kraft.vercel.app/reset-password?token=" + token;
 
         emailService.sendEmail(
                 email,
