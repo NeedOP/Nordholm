@@ -4,7 +4,7 @@ import "../styles/navbar.css";
 function Navbar() {
     return (
         <nav className="navbar">
-            <div className="logo">Nordholm EL & BYGG</div>
+            <div className="logo">Nordholm El & Bygg</div>
 
             <div className="nav-links">
                 <Link to="/">Home</Link>

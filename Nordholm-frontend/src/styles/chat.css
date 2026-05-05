@@ -1,129 +1,163 @@
+:root {
+    --primary: #2C3836;
+    --bg: #f4f6f8;
+    --white: #ffffff;
+    --text: #111;
+    --gray: #666;
+}
+
+/* PAGE LAYOUT */
 .app-container {
     display: flex;
-    height: 90vh;
-    font-family: Arial, sans-serif;
+    height: 100vh;
+    background: var(--bg);
 }
 
 /* SIDEBAR */
 .sidebar {
-    width: 30%;
-    border-right: 1px solid #ddd;
-    background-color: #f5f5f5;
-    padding: 10px;
+    width: 320px;
+    background: var(--white);
+    border-right: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h3 {
+    padding: 20px;
+    margin: 0;
+    color: var(--primary);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .user-item {
-    padding: 10px;
-    margin-bottom: 5px;
+    padding: 14px 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: 0.2s;
 }
 
 .user-item:hover {
-    background-color: #ddd;
+    background: #f0f0f0;
 }
 
 .user-item.active {
-    background-color: #4caf50;
-    color: white;
+    background: rgba(44, 56, 54, 0.08);
+    border-left: 4px solid var(--primary);
+}
+
+.user-item div:first-child {
+    font-weight: 600;
+}
+
+.user-item div:last-child {
+    font-size: 12px;
+    color: var(--gray);
 }
 
 /* CHAT AREA */
 .chat-area {
-    width: 70%;
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* MESSAGES */
+/* MESSAGES AREA */
 .messages {
     flex: 1;
-    padding: 10px;
+    padding: 20px;
     overflow-y: auto;
+
     display: flex;
     flex-direction: column;
+    gap: 10px;
+
+    background: linear-gradient(#e9ecef, #f8f9fa);
 }
 
+/* MESSAGE BUBBLES */
 .message {
     max-width: 60%;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 5px;
-    word-wrap: break-word;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    position: relative;
+    word-break: break-word;
 }
 
-.sent {
-    background: #2563eb;
-    align-self: flex-end;
-}
-
-.received {
-    background: #222;
+/* RECEIVED */
+.message.received {
+    background: white;
     align-self: flex-start;
+    border-top-left-radius: 4px;
 }
 
+/* SENT */
+.message.sent {
+    background: var(--primary);
+    color: white;
+    align-self: flex-end;
+    border-top-right-radius: 4px;
+}
 
-/* INPUT */
+/* FILE LINK */
+.message a {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: inherit;
+    opacity: 0.9;
+}
+
+/* INPUT AREA (WHATSAPP STYLE) */
 .input-area {
     display: flex;
-    border-top: 1px solid #ddd;
+    gap: 10px;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid rgba(0,0,0,0.08);
 }
 
-.input-area input {
+.input-area input[type="text"] {
     flex: 1;
-    padding: 10px;
-    border: none;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.15);
+    outline: none;
 }
 
-.input-area button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #4caf50;
-    color: white;
+.input-area input[type="file"] {
+    display: none;
+}
+
+/* FILE BUTTON */
+.file-btn {
+    padding: 10px 12px;
+    border-radius: 50%;
+    background: #eee;
     cursor: pointer;
 }
-.user-item.unread {
-    font-weight: bold;
-    border-left: 4px solid red;
+
+/* SEND BUTTON */
+.input-area button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    cursor: pointer;
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
-
-    .app-container {
-        flex-direction: column;
-    }
-
     .sidebar {
-        width: 100%;
-        display: flex;
-        overflow-x: auto;
-        padding: 10px;
-        gap: 10px;
+        width: 90px;
     }
 
-    .user-item {
-        min-width: 140px;
-    }
-
-    .chat-area {
-        height: calc(100vh - 140px);
-    }
-
-    .messages {
-        padding: 5px;
+    .user-item div:last-child {
+        display: none;
     }
 
     .message {
         max-width: 80%;
-        font-size: 14px;
-    }
-
-    .input-area {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .input-area input {
-        width: 100%;
     }
 }

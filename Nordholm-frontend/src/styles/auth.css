@@ -1,46 +1,43 @@
 .auth-page {
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background: #0f0f10;
-    font-family: Arial, sans-serif;
+    justify-content: center;
+    background: #f5f5f5;
 }
 
 .auth-card {
-    width: 350px;
-    padding: 30px;
-    background: #151516;
+    width: 380px;
+    padding: 40px;
+    background: white;
     border-radius: 14px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     text-align: center;
 }
 
 .logo {
-    color: white;
-    margin-bottom: 5px;
     font-size: 28px;
+    color: var(--primary);
+    margin-bottom: 5px;
 }
 
 .subtitle {
-    color: #888;
+    font-size: 14px;
+    color: #666;
     margin-bottom: 25px;
-    font-size: 12px;
-    letter-spacing: 2px;
 }
 
 .auth-input {
     width: 100%;
     padding: 12px;
     margin: 8px 0;
-    background: #222;
-    border: none;
+    border: 1px solid var(--border);
     border-radius: 8px;
-    color: white;
+    outline: none;
 }
 
 .auth-input:focus {
-    outline: 1px solid #4f9cff;
+    border-color: var(--primary);
 }
 
 .button-group {
@@ -51,76 +48,43 @@
 
 .btn {
     flex: 1;
-    padding: 10px;
-    border: none;
+    padding: 12px;
     border-radius: 8px;
+    border: none;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .login {
-    background: #4f9cff;
+    background: var(--primary);
     color: white;
 }
 
 .register {
-    background: #2b2b2b;
-    color: white;
-}
-
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    background: white;
+    border: 1px solid var(--primary);
+    color: var(--primary);
 }
 
 .error-box {
+    background: #ffe5e5;
+    color: #b00020;
+    padding: 10px;
+    border-radius: 8px;
     margin-top: 10px;
-    color: #ff5c5c;
-    font-size: 13px;
 }
 
-/* LOADER */
-.loader {
-    margin: 15px auto 0;
-    width: 18px;
-    height: 18px;
-    border: 3px solid #444;
-    border-top: 3px solid #4f9cff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
-}
 .success-box {
-    background: rgba(76, 175, 80, 0.1);
-    color: #4caf50;
+    background: #e7f7ee;
+    color: #1b7a3a;
     padding: 10px;
     border-radius: 8px;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-.error-box {
-    background: rgba(255, 92, 92, 0.1);
-    color: #ff5c5c;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    font-size: 14px;
+    margin-top: 10px;
 }
 
 .forgot-password {
     margin-top: 15px;
     font-size: 13px;
-    opacity: 0.7;
+    color: var(--primary);
     cursor: pointer;
-}
-
-.forgot-password:hover {
-    opacity: 1;
-    text-decoration: underline;
 }

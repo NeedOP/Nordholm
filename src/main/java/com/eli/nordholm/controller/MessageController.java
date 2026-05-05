@@ -22,7 +22,7 @@ public class MessageController {
     private final ConversationService conversationService;
     private final UserRepository userRepository;
 
-    // SEND MESSAGE (FIXED)
+    // SEND MESSAGE
     @PostMapping("/send/{receiverId}")
     public Message send(
             @PathVariable Long receiverId,
@@ -53,7 +53,7 @@ public class MessageController {
                 .orElseThrow();
 
         Conversation conversation = conversationService
-                .getById(conversationId); // we will add this
+                .getById(conversationId);
 
         // SECURITY CHECK
         if (!conversation.getUser1Id().equals(currentUser.getId()) &&

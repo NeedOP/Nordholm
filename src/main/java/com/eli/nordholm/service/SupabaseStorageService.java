@@ -52,11 +52,11 @@ public class SupabaseStorageService {
             return "file";
         }
 
-        // Step 1: remove accents (å → a, ö → o, etc.)
+
         String normalized = Normalizer.normalize(fileName, Normalizer.Form.NFD)
                 .replaceAll("\\p{M}", "");
 
-        // Step 2: replace everything unsafe with "_"
+
         return normalized
                 .replaceAll("[^a-zA-Z0-9._-]", "_")
                 .toLowerCase();

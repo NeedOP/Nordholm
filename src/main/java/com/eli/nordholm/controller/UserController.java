@@ -45,7 +45,7 @@ public class UserController {
 
         for (User user : users) {
 
-            // skip yourself
+
             if (user.getId().equals(currentUser.getId())) {
                 continue;
             }

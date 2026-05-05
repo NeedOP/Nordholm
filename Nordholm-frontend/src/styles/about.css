@@ -1,17 +1,9 @@
 .about-container {
-    padding: 40px;
-    color: white;
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
+    padding: 60px 20px;
 }
 
 .about-container h1 {
-    margin-bottom: 20px;
-}
-.about-container h1 {
-    color: black;
-}
-
-.about-container p {
-    color: black;
+    color: var(--primary);
 }

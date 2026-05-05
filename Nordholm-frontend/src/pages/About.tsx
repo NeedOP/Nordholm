@@ -6,19 +6,15 @@ function About() {
             <h1>About Us</h1>
 
             <p>
-                Welcome to Nordholm — a modern communication platform where users
-                can receive invoices (fakturas), chat with admins, and manage
-                their information securely.
+                Welcome to Nordholm
             </p>
 
             <p>
                 This app was built using React, Spring Boot, and PostgreSQL,
-                designed to be simple, fast, and user-friendly.
             </p>
 
             <p>
-                Future features include real-time chat, notifications, and
-                advanced invoice management.
+                Future features
             </p>
         </div>
         

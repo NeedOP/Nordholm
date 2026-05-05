@@ -171,20 +171,23 @@ function Messages() {
                 {selectedUser && (
                     <div className="input-area">
 
+                        <label className="file-btn">
+                            📎
+                            <input
+                                type="file"
+                                onChange={(e) => {
+                                    if (e.target.files) {
+                                        setFile(e.target.files[0]);
+                                    }
+                                }}
+                            />
+                        </label>
+
                         <input
+                            type="text"
                             value={text}
                             onChange={(e) => setText(e.target.value)}
-                            placeholder="Type message..."
-                        />
-
-                        {/* FILE INPUT */}
-                        <input
-                            type="file"
-                            onChange={(e) => {
-                                if (e.target.files) {
-                                    setFile(e.target.files[0]);
-                                }
-                            }}
+                            placeholder="Type a message..."
                         />
 
                         <button onClick={sendMessage}>
@@ -192,6 +195,7 @@ function Messages() {
                         </button>
 
                     </div>
+
                 )}
 
             </div>
