@@ -9,4 +9,4 @@ RUN chmod +x gradlew
 
 RUN ./gradlew clean build -x test
 
-CMD ["sh", "-c", "java -jar $(ls build/libs/*.jar | head -n 1)"]
+CMD ["java", "-jar", "build/libs/Nordholm-0.0.1-SNAPSHOT.jar"]
