@@ -9,7 +9,7 @@ public class EmailService {
 
     private final WebClient webClient = WebClient.builder().build();
 
-    @Value("${RESEND_API_KEY}")
+    @Value("${RESEND_API_KEY:}")
     private String apiKey;
 
     @Value("${RESEND_FROM_ADDRESS:onboarding@resend.dev}")
