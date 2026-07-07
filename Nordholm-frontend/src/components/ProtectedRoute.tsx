@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { isLoggedIn, getRole } from "../utils/auth";
 
 interface Props {
-    children: ReactNode;
+    children?: ReactNode;
     adminOnly?: boolean;
 }
 
