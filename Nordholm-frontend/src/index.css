@@ -1,23 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --navy: #0d1b2a;
-  --navy-mid: #132035;
-  --navy-light: #1c2f4a;
-  --navy-border: #243550;
-  --gold: #c8a96e;
-  --gold-light: #dfc08e;
-  --gold-dim: rgba(200, 169, 110, 0.15);
-  --white: #f5f0e8;
-  --white-dim: rgba(245, 240, 232, 0.55);
-  --white-faint: rgba(245, 240, 232, 0.08);
-  --green: #3a9e6e;
-  --green-dim: rgba(58, 158, 110, 0.2);
-  --red: #c0392b;
-  --red-dim: rgba(192, 57, 43, 0.15);
-  --radius: 6px;
-  --shadow: 0 8px 40px rgba(0,0,0,0.45);
-  --transition: 0.22s ease;
+  /* ── Core palette: charcoal-green / white / black ── */
+  --ink: #0c0e0d;
+  --ink-70: rgba(12, 14, 13, 0.7);
+  --ink-55: rgba(12, 14, 13, 0.55);
+  --ink-35: rgba(12, 14, 13, 0.35);
+  --ink-12: rgba(12, 14, 13, 0.12);
+
+  --paper: #ffffff;
+  --paper-soft: #f5f7f6;
+
+  --brand: #2c3836;
+  --brand-light: #435551;
+  --brand-tint: #eaeeed;
+  --brand-ink: #2c3836;
+
+  --line: #e3e7e6;
+
+  --success: #3f8f6b;
+  --success-bg: #eef6f1;
+  --error: #b3433a;
+  --error-bg: #fbeeed;
+
+  --radius: 8px;
+  --radius-sm: 5px;
+  --shadow: 0 1px 2px rgba(12, 14, 13, 0.05), 0 12px 32px rgba(12, 14, 13, 0.08);
+  --transition: 0.2s ease;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 *, *::before, *::after {
@@ -31,11 +43,13 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--navy);
-  color: var(--white);
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  font-size: 15.5px;
+  line-height: 1.5;
 }
 
 a {
@@ -44,29 +58,126 @@ a {
 }
 
 button {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   cursor: pointer;
 }
 
-input, textarea {
-  font-family: 'DM Sans', sans-serif;
+input, textarea, select {
+  font-family: var(--font-body);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
 }
 
 ::selection {
-  background: var(--gold);
-  color: var(--navy);
+  background: var(--brand-tint);
+  color: var(--ink);
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--navy-mid);
+  background: var(--paper-soft);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--navy-border);
+  background: var(--ink-12);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: var(--brand);
+}
+
+/* ── Shared, reusable primitives used across pages ── */
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brand-ink);
+  margin-bottom: 14px;
+}
+
+.page-hero {
+  padding: 120px 48px 72px;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(36px, 4.6vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+
+.page-hero h1 em {
+  font-style: italic;
+  color: var(--brand-ink);
+}
+
+.page-hero p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-70);
+  max-width: 520px;
+  font-weight: 400;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* ── Status badges (used on Booking + Admin dashboard) ── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge.PENDING {
+  background: #fdf3e3;
+  color: #9a6b1c;
+}
+
+.status-badge.ACCEPTED {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.status-badge.REJECTED {
+  background: var(--error-bg);
+  color: var(--error);
+}
+
+.status-badge.COMPLETED {
+  background: var(--brand-tint);
+  color: var(--brand-ink);
+}
+
+@media (max-width: 640px) {
+  .page-hero {
+    padding: 96px 20px 56px;
+  }
 }

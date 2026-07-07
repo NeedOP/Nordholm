@@ -3,29 +3,22 @@ import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 
-function ForgotPassword() {
+export default function ForgotPassword() {
     const [email, setEmail] = useState("");
-    const [message, setMessage] = useState<string | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [msg, setMsg] = useState<string | null>(null);
+    const [err, setErr] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const sendReset = async () => {
-        setLoading(true);
-        setError(null);
-        setMessage(null);
+    const send = async () => {
+        setLoading(true); setErr(null); setMsg(null);
         try {
             await API.post("/auth/forgot-password", { email });
-            setMessage("📩 Återställningslänk skickad! Kontrollera din e-post.");
-        } catch (err: any) {
-            const msg =
-                err.response?.data?.message ||
-                err.response?.data ||
-                "Något gick fel";
-            setError(typeof msg === "string" ? msg : JSON.stringify(msg));
-        } finally {
-            setLoading(false);
-        }
+            setMsg("📩 Återställningslänk skickad! Kontrollera din e-post.");
+        } catch (e: any) {
+            const m = e.response?.data?.message || e.response?.data || "Något gick fel";
+            setErr(typeof m === "string" ? m : JSON.stringify(m));
+        } finally { setLoading(false); }
     };
 
     return (
@@ -35,38 +28,25 @@ function ForgotPassword() {
                     <span className="auth-logo-main">Nordholm</span>
                     <span className="auth-logo-sub">El &amp; Bygg</span>
                 </div>
-
                 <h2 className="auth-title">Återställ lösenord</h2>
+                <p className="auth-sub">Ange din e-postadress nedan</p>
 
-                <div className="auth-divider">
-                    <span>Ange din e-postadress</span>
-                </div>
+                {msg && <div className="success-box">{msg}</div>}
+                {err && <div className="error-box">{err}</div>}
 
                 <label className="auth-label">E-postadress</label>
-                <input
-                    className="auth-input"
-                    placeholder="din@email.se"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                <input className="auth-input" placeholder="din@email.se" value={email}
+                       onChange={e => setEmail(e.target.value)} />
 
-                {message && <div className="success-box">{message}</div>}
-                {error && <div className="error-box">{error}</div>}
-
-                <div className="auth-button-group">
-                    <button className="btn-login" onClick={sendReset} disabled={loading}>
+                <div className="auth-btns">
+                    <button className="btn-login" onClick={send} disabled={loading}>
                         {loading ? "Skickar..." : "Skicka återställningslänk"}
                     </button>
                 </div>
 
-                <p className="auth-footer-link" onClick={() => navigate("/login")}>
-                    ← Tillbaka till inloggning
-                </p>
-
+                <p className="auth-link" onClick={() => navigate("/login")}>← Tillbaka till inloggning</p>
                 {loading && <div className="loader" />}
             </div>
         </div>
     );
 }
-
-export default ForgotPassword;

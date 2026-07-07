@@ -1,92 +1,62 @@
 .about {
-    padding-top: 72px;
-}
-
-.about-hero {
-    background: var(--navy-mid);
-    border-bottom: 1px solid var(--navy-border);
-    padding: 80px 48px;
-}
-
-.about-hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.about-hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(40px, 5vw, 64px);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-
-.about-hero h1 em {
-    color: var(--gold);
-    font-style: italic;
-}
-
-.about-hero p {
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--white-dim);
-    max-width: 560px;
-    font-weight: 300;
+    padding-top: 76px;
 }
 
 .about-body {
-    max-width: 1100px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 80px 48px;
+    padding: 88px 48px;
 }
 
-.about-section {
+.about-block {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 64px;
     align-items: start;
-    margin-bottom: 80px;
-    padding-bottom: 80px;
-    border-bottom: 1px solid var(--navy-border);
+    margin-bottom: 88px;
+    padding-bottom: 88px;
+    border-bottom: 1px solid var(--line);
 }
 
-.about-section:last-child {
+.about-block:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
     border-bottom: none;
 }
 
-.about-section.reverse {
+.about-block.flip {
     direction: rtl;
 }
 
-.about-section.reverse > * {
+.about-block.flip > * {
     direction: ltr;
 }
 
 .about-text h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--white);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    color: var(--ink);
     margin-bottom: 20px;
-    line-height: 1.2;
 }
 
 .about-text p {
     font-size: 15px;
     line-height: 1.8;
-    color: var(--white-dim);
+    color: var(--ink-70);
     margin-bottom: 16px;
 }
 
-.about-visual {
-    background: var(--navy-mid);
-    border: 1px solid var(--navy-border);
-    border-radius: 8px;
-    padding: 48px 40px;
+.about-panel {
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 40px 36px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 26px;
 }
 
 .about-value {
@@ -95,63 +65,62 @@
     gap: 16px;
 }
 
-.about-value-icon {
+.about-val-icon {
     width: 40px;
     height: 40px;
-    background: var(--gold-dim);
-    border-radius: 6px;
+    background: var(--sky-tint);
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 17px;
     flex-shrink: 0;
 }
 
-.about-value h4 {
-    font-size: 15px;
+.about-val-text h4 {
+    font-size: 14.5px;
     font-weight: 600;
-    color: var(--white);
+    color: var(--ink);
     margin-bottom: 4px;
 }
 
-.about-value p {
-    font-size: 13.5px;
-    color: var(--white-dim);
+.about-val-text p {
+    font-size: 13px;
+    color: var(--ink-55);
     line-height: 1.6;
     margin: 0;
 }
 
-.tech-stack {
+.tech-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 24px;
+    gap: 8px;
+    margin-top: 20px;
 }
 
-.tech-tag {
-    background: var(--gold-dim);
-    border: 1px solid rgba(200, 169, 110, 0.25);
-    color: var(--gold);
-    font-size: 12px;
+.tech-chip {
+    background: var(--sky-tint);
+    border: 1px solid var(--sky);
+    color: var(--sky-ink);
+    font-size: 11.5px;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    padding: 6px 14px;
-    border-radius: 4px;
-    text-transform: uppercase;
+    padding: 6px 13px;
+    border-radius: 100px;
 }
 
 @media (max-width: 768px) {
-    .about-hero,
     .about-body {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 64px 20px;
     }
 
-    .about-section {
+    .about-block {
         grid-template-columns: 1fr;
+        gap: 32px;
+        margin-bottom: 56px;
+        padding-bottom: 56px;
     }
 
-    .about-section.reverse {
+    .about-block.flip {
         direction: ltr;
     }
 }

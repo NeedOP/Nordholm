@@ -6,31 +6,30 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.text.Normalizer;
 
+/**
+ * Optional file storage (kept for future use — e.g. attaching documents
+ * to an appointment). Not wired into any endpoint yet.
+ */
 @Service
 public class SupabaseStorageService {
 
     private final WebClient webClient;
 
-    @Value("${SUPABASE_URL}")
+    @Value("${SUPABASE_URL:}")
     private String supabaseUrl;
 
-    @Value("${SUPABASE_SERVICE_KEY}")
+    @Value("${SUPABASE_SERVICE_KEY:}")
     private String serviceKey;
 
-    private final String BUCKET = "uploads";
+    private static final String BUCKET = "uploads";
 
     public SupabaseStorageService(WebClient webClient) {
         this.webClient = webClient;
-
-        System.out.println("SUPABASE URL = " + supabaseUrl);
-        System.out.println("SUPABASE KEY NULL? " + (serviceKey == null));
     }
-
 
     public String uploadFile(byte[] fileBytes, String fileName) {
 
-        String cleanFileName = fileName.replace(" ", "_");
-        String path = BUCKET + "/" + cleanFileName;
+        String path = BUCKET + "/" + cleanFileName(fileName);
 
         webClient.put()
                 .uri(supabaseUrl + "/storage/v1/object/" + path)
@@ -45,17 +44,13 @@ public class SupabaseStorageService {
         return supabaseUrl + "/storage/v1/object/public/" + path;
     }
 
-
     private String cleanFileName(String fileName) {
-
         if (fileName == null) {
             return "file";
         }
 
-
         String normalized = Normalizer.normalize(fileName, Normalizer.Form.NFD)
                 .replaceAll("\\p{M}", "");
-
 
         return normalized
                 .replaceAll("[^a-zA-Z0-9._-]", "_")

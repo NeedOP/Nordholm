@@ -5,8 +5,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class UserUtil {
 
+    /** Email of the currently authenticated user (JWT subject), or null if none. */
     public static String getCurrentUserEmail() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return auth.getName();
+        return auth != null ? auth.getName() : null;
     }
 }

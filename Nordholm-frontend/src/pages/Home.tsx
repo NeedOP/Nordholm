@@ -1,176 +1,226 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
 
-function Home() {
-    const navigate = useNavigate();
+const services = [
+    { icon: "⚡", title: "Elinstallation", desc: "Nyinstallation, ombyggnad och felsökning av behöriga elektriker med certifiering." },
+    { icon: "🏗️", title: "Byggarbeten", desc: "Renovering, tillbyggnad och nybyggnad från grunden till färdigställande." },
+    { icon: "☀️", title: "Solceller", desc: "Installation av solpaneler och lagringssystem för lägre elkostnad och miljönytta." },
+    { icon: "🔌", title: "Smart hem", desc: "Moderna lösningar för belysning, larm och styrning — framtidssäkra ditt hem." },
+    { icon: "🛡️", title: "Besiktning", desc: "Teknisk besiktning av el- och byggnadsinstallationer med intyg och protokoll." },
+    { icon: "🔧", title: "Underhåll", desc: "Löpande underhåll, servicekontrakt och akutjänster dygnet runt." },
+];
 
+export default function Home() {
+    const navigate = useNavigate();
     return (
         <main className="home">
+
             {/* ── HERO ── */}
             <section className="hero">
-                <div className="hero-bg" />
-                <div className="hero-grid-overlay" />
-
-                <div className="hero-content">
+                <div className="hero-left">
                     <div className="hero-tag">
+                        <span />
                         Certifierade hantverkare · Stockholm
                     </div>
 
                     <h1>
                         El &amp; bygg du<br />
-                        kan lita på — <em>på riktigt</em>
+                        kan lita på —<br />
+                        <em>alltid</em>
                     </h1>
 
                     <p className="hero-desc">
-                        Nordholm El &amp; Bygg levererar professionella tjänster
-                        inom elinstallation och byggarbeten. Vi jobbar noggrannt,
-                        säkert och håller alltid våra tidsplaner.
+                        Nordholm El &amp; Bygg levererar professionella el- och byggtjänster
+                        med fokus på kvalitet, säkerhet och pålitlig service. Boka en tid
+                        online — vi återkommer inom 24 timmar.
                     </p>
 
                     <div className="hero-actions">
-                        <button className="btn-primary" onClick={() => navigate("/contact")}>
-                            Begär offert
+                        <button className="btn-primary" onClick={() => navigate("/booking")}>
+                            Boka tid
                         </button>
-                        <button className="btn-outline" onClick={() => navigate("/about")}>
+                        <button className="btn-ghost" onClick={() => navigate("/about")}>
                             Läs om oss
                         </button>
                     </div>
+
+                    <div className="hero-stats">
+                        <div className="hero-stat">
+                            <div className="num">12+</div>
+                            <div className="lbl">Års erfarenhet</div>
+                        </div>
+                        <div className="hero-stat">
+                            <div className="num">350+</div>
+                            <div className="lbl">Projekt slutförda</div>
+                        </div>
+                        <div className="hero-stat">
+                            <div className="num">98%</div>
+                            <div className="lbl">Nöjda kunder</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="hero-stats">
-                    <div className="hero-stat">
-                        <div className="number">12+</div>
-                        <div className="label">Års erfarenhet</div>
+                <div className="hero-right">
+                    <div className="hero-overlay-badge">
+                        <div className="dot" />
+                        <span>Tillgängliga för nya projekt</span>
                     </div>
-                    <div className="hero-stat">
-                        <div className="number">350+</div>
-                        <div className="label">Genomförda projekt</div>
-                    </div>
-                    <div className="hero-stat">
-                        <div className="number">98%</div>
-                        <div className="label">Nöjda kunder</div>
+                    <div className="hero-photo-grid">
+                        <div className="hero-photo-main">
+                            <div className="photo-ph">🏗</div>
+                            <div className="photo-lbl">Lägg till projektfoto här</div>
+                        </div>
+                        <div className="hero-photo-row">
+                            <div className="hero-photo-row-item">
+                                <div className="photo-ph">⚡</div>
+                                <div className="photo-lbl">Elfoto</div>
+                            </div>
+                            <div className="hero-photo-row-item">
+                                <div className="photo-ph">🏠</div>
+                                <div className="photo-lbl">Byggfoto</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* ── SERVICES ── */}
             <section className="services">
-                <div className="section-eyebrow">Vad vi erbjuder</div>
-                <h2 className="section-title">
-                    Kompletta lösningar<br />för hem &amp; företag
-                </h2>
-
-                <div className="services-grid">
-                    <div className="service-card">
-                        <div className="service-icon">⚡</div>
-                        <h3>Elinstallation</h3>
+                <div className="services-inner">
+                    <div className="services-header">
+                        <div>
+                            <div className="eyebrow">Vad vi erbjuder</div>
+                            <h2 className="section-title">Kompletta tjänster<br />för alla behov</h2>
+                        </div>
                         <p>
-                            Allt från nyinstallation och ombyggnad till felsökning och
-                            säkerhetskontroller. Behöriga elektriker med certifiering.
+                            Oavsett om det gäller en liten elreparation eller en komplett
+                            byggrenovering — vi hanterar allt med samma noggrannhet och
+                            professionalism. Inga dolda avgifter, inga överraskningar.
                         </p>
                     </div>
 
-                    <div className="service-card">
-                        <div className="service-icon">🏗️</div>
-                        <h3>Byggarbeten</h3>
-                        <p>
-                            Renovering, tillbyggnad och nybyggnad. Vi hanterar allt från
-                            grunden till färdigställande med hög precision.
-                        </p>
-                    </div>
-
-                    <div className="service-card">
-                        <div className="service-icon">🔌</div>
-                        <h3>Smart hem</h3>
-                        <p>
-                            Installation av smarta lösningar för belysning, larm och
-                            styrning. Framtidssäkra ditt hem med modern teknik.
-                        </p>
-                    </div>
-
-                    <div className="service-card">
-                        <div className="service-icon">🔧</div>
-                        <h3>Underhåll &amp; service</h3>
-                        <p>
-                            Löpande underhåll, akutjänster och servicekontrakt för
-                            fastigheter och bostadsrättsföreningar.
-                        </p>
-                    </div>
-
-                    <div className="service-card">
-                        <div className="service-icon">☀️</div>
-                        <h3>Solcellsinstallation</h3>
-                        <p>
-                            Professionell installation av solpaneler och lagringssystem.
-                            Sänk din elkostnad och minska miljöpåverkan.
-                        </p>
-                    </div>
-
-                    <div className="service-card">
-                        <div className="service-icon">🛡️</div>
-                        <h3>Besiktning &amp; kontroll</h3>
-                        <p>
-                            Teknisk besiktning av el- och byggnadsinstallationer.
-                            Säkerhetsintyg och protokoll för försäljning och uthyrning.
-                        </p>
+                    <div className="services-grid">
+                        {services.map((s, i) => (
+                            <div className="svc" key={i}>
+                                <div className="svc-num">0{i + 1}</div>
+                                <div className="svc-icon">{s.icon}</div>
+                                <h3>{s.title}</h3>
+                                <p>{s.desc}</p>
+                                <div className="svc-arrow">→</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* ── WHY US ── */}
-            <section className="why-us">
-                <div className="why-us-inner">
-                    <div className="why-us-text">
-                        <div className="section-eyebrow">Varför välja oss</div>
-                        <h2 className="section-title">
-                            Kvalitet som<br />syns i resultatet
-                        </h2>
+            {/* ── PHOTO ── */}
+            <section className="photo-section">
+                <div className="photo-section-inner">
+                    <div className="photo-section-header">
+                        <div>
+                            <div className="eyebrow">Visa upp ditt arbete</div>
+                            <h2 className="section-title">Bilder talar<br />mer än ord</h2>
+                        </div>
                         <p>
-                            Vi på Nordholm El &amp; Bygg kombinerar gedigen erfarenhet
-                            med moderna arbetsmetoder. Varje projekt är unikt — och vi
-                            behandlar det som sådant.
+                            Lägg till foton från dina projekt här — kunder vill se verkliga
+                            resultat. Ersätt platshållarna nedan med riktiga bilder från
+                            färdiga uppdrag.
                         </p>
-                        <ul className="why-us-list">
-                            <li>Behöriga elektriker och certifierade byggnadsarbetare</li>
-                            <li>Fasta priser utan dolda avgifter</li>
-                            <li>Levererar alltid i tid och inom budget</li>
-                            <li>5 års garanti på utfört arbete</li>
-                            <li>ROT-avdrag hanteras direkt av oss</li>
+                    </div>
+
+                    <div className="photo-mosaic">
+                        <div className="photo-tile tall">
+                            <div className="photo-tile-ph">🏗️</div>
+                            <div className="photo-tile-lbl">Stort projektfoto</div>
+                            <div className="photo-tile-caption">
+                                <span>Projektnamn, plats</span>
+                                <small>Typ av arbete · År</small>
+                            </div>
+                        </div>
+                        <div className="photo-tile">
+                            <div className="photo-tile-ph">⚡</div>
+                            <div className="photo-tile-lbl">Elfoto</div>
+                            <div className="photo-tile-caption">
+                                <span>Elinstallation</span>
+                                <small>Företagskund · Stockholm</small>
+                            </div>
+                        </div>
+                        <div className="photo-tile">
+                            <div className="photo-tile-ph">🔧</div>
+                            <div className="photo-tile-lbl">Detaljfoto</div>
+                            <div className="photo-tile-caption">
+                                <span>Underhållsarbete</span>
+                                <small>Privatbostad</small>
+                            </div>
+                        </div>
+                        <div className="photo-tile wide">
+                            <div className="photo-tile-ph">🏠</div>
+                            <div className="photo-tile-lbl">Panoramafoto — renovering eller nybygge</div>
+                            <div className="photo-tile-caption">
+                                <span>Komplett renovering</span>
+                                <small>Villaägare · Täby</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── WHY ── */}
+            <section className="why">
+                <div className="why-inner">
+                    <div className="why-text">
+                        <div className="eyebrow">Varför välja oss</div>
+                        <h2 className="section-title">Kvalitet som<br />håller över tid</h2>
+                        <p>
+                            Vi kombinerar gedigen hantverkserfarenhet med moderna arbetsmetoder
+                            och ett enkelt digitalt bokningsflöde. Varje projekt behandlas som
+                            unikt — för att det är det.
+                        </p>
+                        <ul className="why-list">
+                            {[
+                                "Behöriga elektriker och certifierade byggnadsarbetare",
+                                "Fasta priser utan dolda avgifter — alltid",
+                                "Boka tid online och följ status på din förfrågan",
+                                "5 års garanti på allt utfört arbete",
+                                "ROT-avdrag hanteras direkt av oss",
+                                "Akutservice tillgänglig dygnet runt",
+                            ].map((t, i) => (
+                                <li className="why-item" key={i}>
+                                    <div className="why-check">✓</div>
+                                    <span>{t}</span>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    <div className="why-us-badges">
-                        <div className="badge">
-                            <div className="badge-number">12+</div>
-                            <div className="badge-label">År i branschen</div>
-                        </div>
-                        <div className="badge">
-                            <div className="badge-number">350+</div>
-                            <div className="badge-label">Slutförda projekt</div>
-                        </div>
-                        <div className="badge">
-                            <div className="badge-number">5 år</div>
-                            <div className="badge-label">Garanti på allt arbete</div>
-                        </div>
-                        <div className="badge">
-                            <div className="badge-number">24/7</div>
-                            <div className="badge-label">Akutservice tillgänglig</div>
-                        </div>
+                    <div className="why-cards">
+                        {[
+                            { num: "12", unit: "år", lbl: "i branschen" },
+                            { num: "350+", unit: "", lbl: "slutförda projekt" },
+                            { num: "5", unit: "år", lbl: "garanti på allt arbete" },
+                            { num: "24/7", unit: "", lbl: "akutservice tillgänglig" },
+                        ].map((c, i) => (
+                            <div className="why-card" key={i}>
+                                <div className="num">{c.num} <span className="unit">{c.unit}</span></div>
+                                <div className="lbl">{c.lbl}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* ── CTA BAND ── */}
-            <section className="cta-band">
-                <div className="section-eyebrow">Redo att börja?</div>
-                <h2>Ta kontakt idag för en kostnadsfri offert</h2>
-                <p>Inget projekt är för litet eller för stort. Vi svarar inom 24 timmar.</p>
-                <button className="btn-primary" onClick={() => navigate("/contact")}>
-                    Kontakta oss nu
-                </button>
+            {/* ── CTA ── */}
+            <section className="cta">
+                <div className="cta-inner">
+                    <div>
+                        <h2>Redo att boka din tid?</h2>
+                        <p>Skapa ett konto, boka online, och följ status på din förfrågan när som helst.</p>
+                    </div>
+                    <button className="btn-dark" onClick={() => navigate("/booking")}>
+                        Boka tid nu →
+                    </button>
+                </div>
             </section>
         </main>
     );
 }
-
-export default Home;

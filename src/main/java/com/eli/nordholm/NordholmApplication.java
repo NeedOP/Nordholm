@@ -9,5 +9,4 @@ public class NordholmApplication {
     public static void main(String[] args) {
         SpringApplication.run(NordholmApplication.class, args);
     }
-
 }

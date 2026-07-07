@@ -3,55 +3,37 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/verify.css";
 
-function ResetPassword() {
+export default function ResetPassword() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+    const [msg, setMsg] = useState("");
     const [loading, setLoading] = useState(false);
     const token = searchParams.get("token");
 
     const reset = async () => {
-        if (!token) { setMessage("Ogiltig länk"); return; }
+        if (!token) { setMsg("Ogiltig länk"); return; }
         setLoading(true);
         try {
             await API.post("/auth/reset-password", { token, password });
-            setMessage("✅ Lösenordet har uppdaterats!");
+            setMsg("✅ Lösenordet har uppdaterats!");
             setTimeout(() => navigate("/login"), 2000);
-        } catch (err: any) {
-            const msg =
-                err.response?.data?.message ||
-                err.response?.data ||
-                "Återställning misslyckades";
-            setMessage(typeof msg === "string" ? msg : JSON.stringify(msg));
-        } finally {
-            setLoading(false);
-        }
+        } catch (e: any) {
+            const m = e.response?.data?.message || e.response?.data || "Återställning misslyckades";
+            setMsg(typeof m === "string" ? m : JSON.stringify(m));
+        } finally { setLoading(false); }
     };
 
     return (
         <div className="verify-page">
             <div className="verify-card">
-                <h2 style={{ color: "var(--white)", marginBottom: "8px" }}>
-                    Nytt lösenord
-                </h2>
+                <h2>Nytt lösenord</h2>
                 <p>Ange ditt nya lösenord nedan.</p>
-
-                <input
-                    type="password"
-                    placeholder="Nytt lösenord"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-
-                <button onClick={reset} disabled={loading}>
-                    {loading ? "Uppdaterar..." : "Uppdatera lösenord"}
-                </button>
-
-                {message && <p className="small" style={{ marginTop: "16px" }}>{message}</p>}
+                <input type="password" placeholder="Nytt lösenord" value={password}
+                       onChange={e => setPassword(e.target.value)} />
+                <button onClick={reset} disabled={loading}>{loading ? "Uppdaterar..." : "Uppdatera lösenord"}</button>
+                {msg && <p className="small">{msg}</p>}
             </div>
         </div>
     );
 }
-
-export default ResetPassword;

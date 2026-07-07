@@ -1,27 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/header.css";
+import { isLoggedIn, getRole, logout } from "../utils/auth";
 
 function Header() {
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
+    const loggedIn = isLoggedIn();
+    const isAdmin = getRole() === "ADMIN";
 
-    const handleMessagesClick = () => {
-        if (!token) navigate("/auth");
-        else navigate("/messages");
+    const handleBookingClick = () => {
+        if (!loggedIn) navigate("/login");
+        else navigate("/booking");
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
     };
 
     return (
         <header className="header">
             <div className="logo" onClick={() => navigate("/")}>
-                Nordholm <span>El & Bygg</span>
+                Nordholm <span>El &amp; Bygg</span>
             </div>
 
             <nav className="nav">
-                <button onClick={() => navigate("/")}>Home</button>
-                <button onClick={() => navigate("/about")}>About</button>
-                <button onClick={() => navigate("/contact")}>Contact</button>
-                <button onClick={handleMessagesClick}>Messages</button>
-                <button onClick={() => navigate("/auth")}>Login</button>
+                <button onClick={() => navigate("/")}>Hem</button>
+                <button onClick={() => navigate("/about")}>Om oss</button>
+                <button onClick={() => navigate("/contact")}>Kontakt</button>
+                <button onClick={handleBookingClick}>Boka tid</button>
+                {isAdmin && <button onClick={() => navigate("/admin")}>Adminpanel</button>}
+                {loggedIn ? (
+                    <button onClick={handleLogout}>Logga ut</button>
+                ) : (
+                    <button className="nav-cta" onClick={() => navigate("/login")}>Logga in</button>
+                )}
             </nav>
         </header>
     );

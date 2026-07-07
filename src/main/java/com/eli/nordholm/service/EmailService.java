@@ -12,6 +12,9 @@ public class EmailService {
     @Value("${RESEND_API_KEY}")
     private String apiKey;
 
+    @Value("${RESEND_FROM_ADDRESS:onboarding@resend.dev}")
+    private String fromAddress;
+
     public void sendEmail(String to, String subject, String html) {
 
         webClient.post()
@@ -20,14 +23,22 @@ public class EmailService {
                 .header("Content-Type", "application/json")
                 .bodyValue("""
                     {
-                      "from": "onboarding@resend.dev",
+                      "from": "%s",
                       "to": "%s",
                       "subject": "%s",
                       "html": "%s"
                     }
-                """.formatted(to, subject, html))
+                """.formatted(fromAddress, to, escape(subject), escape(html)))
                 .retrieve()
                 .toBodilessEntity()
                 .block();
+    }
+
+    // Prevents broken JSON if a subject/body ever contains a quote or newline.
+    private String escape(String raw) {
+        if (raw == null) return "";
+        return raw.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "");
     }
 }

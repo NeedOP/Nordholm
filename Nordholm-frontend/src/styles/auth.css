@@ -4,140 +4,110 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: var(--navy);
-    position: relative;
-    overflow: hidden;
-}
-
-.auth-page::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-            radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200, 169, 110, 0.05) 0%, transparent 70%);
+    background: var(--paper-soft);
 }
 
 .auth-card {
-    position: relative;
     width: 100%;
     max-width: 420px;
-    background: var(--navy-mid);
-    border: 1px solid var(--navy-border);
+    background: var(--paper);
+    border: 1px solid var(--line);
     border-radius: 12px;
-    padding: 52px 44px;
+    padding: 48px 42px;
     box-shadow: var(--shadow);
 }
 
 .auth-logo {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
 }
 
 .auth-logo-main {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--ink);
     display: block;
 }
 
 .auth-logo-sub {
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    color: var(--brand-ink);
     text-transform: uppercase;
     font-weight: 600;
     display: block;
-    margin-top: 4px;
+    margin-top: 5px;
 }
 
 .auth-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.auth-sub {
+    font-size: 13.5px;
+    color: var(--ink-55);
     text-align: center;
     margin-bottom: 28px;
 }
 
-.auth-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
-}
-
-.auth-divider::before,
-.auth-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--navy-border);
-}
-
-.auth-divider span {
-    font-size: 12px;
-    color: var(--white-dim);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
 .auth-label {
     display: block;
-    font-size: 11.5px;
-    letter-spacing: 0.12em;
+    font-size: 11px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--white-dim);
+    color: var(--ink-55);
     font-weight: 600;
     margin-bottom: 8px;
 }
 
 .auth-input {
     width: 100%;
-    background: var(--navy);
-    border: 1px solid var(--navy-border);
-    border-radius: var(--radius);
-    padding: 13px 16px;
-    color: var(--white);
-    font-size: 14.5px;
-    margin-bottom: 16px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 13px 15px;
+    color: var(--ink);
+    font-size: 14px;
+    margin-bottom: 18px;
     outline: none;
     transition: border-color var(--transition);
 }
 
 .auth-input:focus {
-    border-color: var(--gold);
+    border-color: var(--brand);
 }
 
 .auth-input::placeholder {
-    color: rgba(245, 240, 232, 0.22);
+    color: var(--ink-35);
 }
 
-.auth-button-group {
+.auth-btns {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 .btn-login {
     width: 100%;
-    background: var(--gold);
-    color: var(--navy);
+    background: var(--ink);
+    color: var(--paper);
     border: none;
     padding: 14px;
     font-size: 13.5px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border-radius: var(--radius);
-    cursor: pointer;
+    font-weight: 600;
+    border-radius: 100px;
     transition: all var(--transition);
 }
 
 .btn-login:hover:not(:disabled) {
-    background: var(--gold-light);
-    transform: translateY(-1px);
+    background: var(--brand-ink);
 }
 
 .btn-login:disabled {
@@ -145,64 +115,46 @@
     cursor: not-allowed;
 }
 
-.btn-register {
+.btn-reg {
     width: 100%;
     background: transparent;
-    color: var(--white-dim);
-    border: 1.5px solid var(--navy-border);
+    color: var(--ink-70);
+    border: 1.5px solid var(--line);
     padding: 14px;
     font-size: 13.5px;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-radius: var(--radius);
-    cursor: pointer;
+    border-radius: 100px;
     transition: all var(--transition);
 }
 
-.btn-register:hover:not(:disabled) {
-    border-color: var(--white-dim);
-    color: var(--white);
+.btn-reg:hover:not(:disabled) {
+    border-color: var(--ink);
+    color: var(--ink);
 }
 
-.btn-register:disabled {
+.btn-reg:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
-.auth-footer-link {
+.auth-link {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 22px;
     font-size: 13px;
-    color: var(--white-dim);
+    color: var(--ink-55);
     cursor: pointer;
     transition: color var(--transition);
 }
 
-.auth-footer-link:hover {
-    color: var(--gold);
-}
-
-.auth-back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--white-dim);
-    cursor: pointer;
-    margin-top: 16px;
-    transition: color var(--transition);
-}
-
-.auth-back-link:hover {
-    color: var(--gold);
+.auth-link:hover {
+    color: var(--brand-ink);
 }
 
 .success-box {
-    background: var(--green-dim);
-    border: 1px solid rgba(58, 158, 110, 0.3);
-    color: #5fcea0;
-    border-radius: var(--radius);
+    background: var(--success-bg);
+    border: 1px solid rgba(63, 143, 107, 0.25);
+    color: var(--success);
+    border-radius: var(--radius-sm);
     padding: 12px 16px;
     font-size: 13.5px;
     margin-bottom: 16px;
@@ -210,10 +162,10 @@
 }
 
 .error-box {
-    background: var(--red-dim);
-    border: 1px solid rgba(192, 57, 43, 0.3);
-    color: #e07c74;
-    border-radius: var(--radius);
+    background: var(--error-bg);
+    border: 1px solid rgba(192, 69, 58, 0.25);
+    color: var(--error);
+    border-radius: var(--radius-sm);
     padding: 12px 16px;
     font-size: 13.5px;
     margin-bottom: 16px;
@@ -221,10 +173,10 @@
 }
 
 .loader {
-    width: 22px;
-    height: 22px;
-    border: 2px solid var(--navy-border);
-    border-top-color: var(--gold);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--line);
+    border-top-color: var(--brand);
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
     margin: 16px auto 0;

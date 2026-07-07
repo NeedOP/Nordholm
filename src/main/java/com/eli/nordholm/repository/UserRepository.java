@@ -1,5 +1,6 @@
 package com.eli.nordholm.repository;
 
+import com.eli.nordholm.model.Role;
 import com.eli.nordholm.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,5 +11,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
 
-    List<User> findByRole(String role);
+    List<User> findByRole(Role role);
 }

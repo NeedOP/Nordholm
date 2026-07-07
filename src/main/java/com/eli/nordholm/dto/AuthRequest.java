@@ -1,4 +1,4 @@
-package com.eli.nordholm.controller;
+package com.eli.nordholm.dto;
 
 import lombok.Data;
 
