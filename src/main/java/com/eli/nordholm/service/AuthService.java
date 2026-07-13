@@ -26,7 +26,7 @@ public class AuthService {
     private final VerificationTokenRepository verificationTokenRepository;
     private final JwtUtil jwtUtil;
 
-    @org.springframework.beans.factory.annotation.Value("${FRONTEND_URL:http://localhost:5173}")
+    @org.springframework.beans.factory.annotation.Value("${FRONTEND_URL:https://www.nordholmel.se}")
     private String frontendUrl;
 
     private String normalize(String email) {
