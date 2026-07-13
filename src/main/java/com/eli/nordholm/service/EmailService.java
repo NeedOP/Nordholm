@@ -12,7 +12,7 @@ public class EmailService {
     @Value("${RESEND_API_KEY:}")
     private String apiKey;
 
-    @Value("${RESEND_FROM_ADDRESS:info@nordholmel.se}}")
+    @Value("${RESEND_FROM_ADDRESS:info@nordholmel.se}")
     private String fromAddress;
 
     public void sendEmail(String to, String subject, String html) {
