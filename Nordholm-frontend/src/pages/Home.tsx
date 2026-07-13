@@ -1,13 +1,34 @@
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import "../styles/home.css";
 
+
 const services = [
-    { icon: "⚡", title: "Elinstallation", desc: "Nyinstallation, ombyggnad och felsökning av behöriga elektriker med certifiering." },
-    { icon: "🏗️", title: "Byggarbeten", desc: "Renovering, tillbyggnad och nybyggnad från grunden till färdigställande." },
-    { icon: "☀️", title: "Solceller", desc: "Installation av solpaneler och lagringssystem för lägre elkostnad och miljönytta." },
-    { icon: "🔌", title: "Smart hem", desc: "Moderna lösningar för belysning, larm och styrning — framtidssäkra ditt hem." },
-    { icon: "🛡️", title: "Besiktning", desc: "Teknisk besiktning av el- och byggnadsinstallationer med intyg och protokoll." },
-    { icon: "🔧", title: "Underhåll", desc: "Löpande underhåll, servicekontrakt och akutjänster dygnet runt." },
+    {
+        icon: "⚡",
+        title: "Elinstallation",
+        desc: "Nyinstallation, ombyggnad och felsökning av behöriga elektriker med certifiering."
+    },
+    {
+        icon: "🏗️",
+        title: "Byggarbeten",
+        desc: "Renovering, tillbyggnad och nybyggnad från grunden till färdigställande."
+    },
+    {
+        icon: "☀️",
+        title: "Elcentraler",
+        desc: "Installation och uppgradering av elcentraler för ökad säkerhet, bättre kontroll och effektiv energifördelning i hemmet."
+    },
+    {
+        icon: "🔌",
+        title: "Smart hem",
+        desc: "Moderna lösningar för belysning, larm och styrning — framtidssäkra ditt hem."
+    },
+    {
+        icon: "🛡️",
+        title: "Besiktning",
+        desc: "Teknisk besiktning av el- och byggnadsinstallationer med intyg och protokoll."
+    },
+    {icon: "🔧", title: "Underhåll", desc: "Löpande underhåll, servicekontrakt och akutjänster dygnet runt."},
 ];
 
 export default function Home() {
@@ -19,13 +40,13 @@ export default function Home() {
             <section className="hero">
                 <div className="hero-left">
                     <div className="hero-tag">
-                        <span />
+                        <span/>
                         Certifierade hantverkare · Stockholm
                     </div>
 
                     <h1>
-                        El &amp; bygg du<br />
-                        kan lita på —<br />
+                        El &amp; bygg du<br/>
+                        kan lita på —<br/>
                         <em>alltid</em>
                     </h1>
 
@@ -46,8 +67,8 @@ export default function Home() {
 
                     <div className="hero-stats">
                         <div className="hero-stat">
-                            <div className="num">12+</div>
-                            <div className="lbl">Års erfarenhet</div>
+                            <div className="num">5</div>
+                            <div className="lbl">Års garanti </div>
                         </div>
                         <div className="hero-stat">
                             <div className="num">350+</div>
@@ -62,22 +83,28 @@ export default function Home() {
 
                 <div className="hero-right">
                     <div className="hero-overlay-badge">
-                        <div className="dot" />
+                        <div className="dot"/>
                         <span>Tillgängliga för nya projekt</span>
                     </div>
                     <div className="hero-photo-grid">
-                        <div className="hero-photo-main">
-                            <div className="photo-ph">🏗</div>
-                            <div className="photo-lbl">Lägg till projektfoto här</div>
+                        <div className="hero-photo-main" style={{
+                            backgroundImage: "url(/hero1.jpg)",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
+                        }}>
                         </div>
                         <div className="hero-photo-row">
-                            <div className="hero-photo-row-item">
-                                <div className="photo-ph">⚡</div>
-                                <div className="photo-lbl">Elfoto</div>
+                            <div className="hero-photo-row-item" style={{
+                                backgroundImage: "url(/hero2.jpg)",
+                                backgroundSize: "cover",
+                                backgroundPosition: "center"
+                            }}>
                             </div>
-                            <div className="hero-photo-row-item">
-                                <div className="photo-ph">🏠</div>
-                                <div className="photo-lbl">Byggfoto</div>
+                            <div className="hero-photo-row-item" style={{
+                                backgroundImage: "url(/hero3.jpg)",
+                                backgroundSize: "cover",
+                                backgroundPosition: "center"
+                            }}>
                             </div>
                         </div>
                     </div>
@@ -90,7 +117,7 @@ export default function Home() {
                     <div className="services-header">
                         <div>
                             <div className="eyebrow">Vad vi erbjuder</div>
-                            <h2 className="section-title">Kompletta tjänster<br />för alla behov</h2>
+                            <h2 className="section-title">Kompletta tjänster<br/>för alla behov</h2>
                         </div>
                         <p>
                             Oavsett om det gäller en liten elreparation eller en komplett
@@ -118,44 +145,50 @@ export default function Home() {
                 <div className="photo-section-inner">
                     <div className="photo-section-header">
                         <div>
-                            <div className="eyebrow">Visa upp ditt arbete</div>
-                            <h2 className="section-title">Bilder talar<br />mer än ord</h2>
+                            <h2 className="section-title">Bilder talar<br/>mer än ord</h2>
                         </div>
-                        <p>
-                            Lägg till foton från dina projekt här — kunder vill se verkliga
-                            resultat. Ersätt platshållarna nedan med riktiga bilder från
-                            färdiga uppdrag.
-                        </p>
+
                     </div>
 
                     <div className="photo-mosaic">
-                        <div className="photo-tile tall">
-                            <div className="photo-tile-ph">🏗️</div>
-                            <div className="photo-tile-lbl">Stort projektfoto</div>
-                            <div className="photo-tile-caption">
-                                <span>Projektnamn, plats</span>
-                                <small>Typ av arbete · År</small>
-                            </div>
-                        </div>
-                        <div className="photo-tile">
-                            <div className="photo-tile-ph">⚡</div>
-                            <div className="photo-tile-lbl">Elfoto</div>
+                        <div className="photo-tile tall" style={{
+                            backgroundImage: "url(/home4.jpeg)",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
+                        }}>
                             <div className="photo-tile-caption">
                                 <span>Elinstallation</span>
                                 <small>Företagskund · Stockholm</small>
                             </div>
                         </div>
-                        <div className="photo-tile">
-                            <div className="photo-tile-ph">🔧</div>
-                            <div className="photo-tile-lbl">Detaljfoto</div>
+
+                        <div className="photo-tile " style={{
+                            backgroundImage: "url(/home8.jpeg)",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
+                        }}>
+                            <div className="photo-tile-caption">
+                                <span>Elinstallation</span>
+                                <small>Företagskund · Stockholm</small>
+                            </div>
+                        </div>
+
+                        <div className="photo-tile " style={{
+                            backgroundImage: "url(/home7.jpeg)",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
+                        }}>
                             <div className="photo-tile-caption">
                                 <span>Underhållsarbete</span>
                                 <small>Privatbostad</small>
                             </div>
                         </div>
-                        <div className="photo-tile wide">
-                            <div className="photo-tile-ph">🏠</div>
-                            <div className="photo-tile-lbl">Panoramafoto — renovering eller nybygge</div>
+
+                        <div className="photo-tile wide" style={{
+                            backgroundImage: "url(/home5.jpeg)",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
+                        }}>
                             <div className="photo-tile-caption">
                                 <span>Komplett renovering</span>
                                 <small>Villaägare · Täby</small>
@@ -169,8 +202,8 @@ export default function Home() {
             <section className="why">
                 <div className="why-inner">
                     <div className="why-text">
-                        <div className="eyebrow">Varför välja oss</div>
-                        <h2 className="section-title">Kvalitet som<br />håller över tid</h2>
+                    <div className="eyebrow">Varför välja oss</div>
+                        <h2 className="section-title">Kvalitet som<br/>håller över tid</h2>
                         <p>
                             Vi kombinerar gedigen hantverkserfarenhet med moderna arbetsmetoder
                             och ett enkelt digitalt bokningsflöde. Varje projekt behandlas som
@@ -195,10 +228,10 @@ export default function Home() {
 
                     <div className="why-cards">
                         {[
-                            { num: "12", unit: "år", lbl: "i branschen" },
-                            { num: "350+", unit: "", lbl: "slutförda projekt" },
-                            { num: "5", unit: "år", lbl: "garanti på allt arbete" },
-                            { num: "24/7", unit: "", lbl: "akutservice tillgänglig" },
+                            {num: "12", unit: "år", lbl: "i branschen"},
+                            {num: "350+", unit: "", lbl: "slutförda projekt"},
+                            {num: "5", unit: "år", lbl: "garanti på allt arbete"},
+                            {num: "24/7", unit: "", lbl: "akutservice tillgänglig"},
                         ].map((c, i) => (
                             <div className="why-card" key={i}>
                                 <div className="num">{c.num} <span className="unit">{c.unit}</span></div>

@@ -11,7 +11,7 @@ export default function Footer() {
                     <span className="footer-logo-sub">El &amp; Bygg</span>
                     <p className="footer-desc">
                         Professionella el- och byggtjänster i Stockholmsregionen. Certifierade
-                        hantverkare med fokus på kvalitet och säkerhet sedan 2012.
+                        hantverkare med fokus på kvalitet och säkerhet.
                     </p>
                 </div>
                 <div className="footer-col">
@@ -27,11 +27,11 @@ export default function Footer() {
                     <h4>Kontakt</h4>
                     <div className="footer-contact-entry">
                         <label>E-post</label>
-                        <span>info@nordholmbygg.se</span>
+                        <span>info@nordholmel.se</span>
                     </div>
                     <div className="footer-contact-entry">
                         <label>Telefon</label>
-                        <span>+46 70 123 45 67</span>
+                        <span>+46 73 664 84 45</span>
                     </div>
                     <div className="footer-contact-entry">
                         <label>Adress</label>
@@ -41,7 +41,7 @@ export default function Footer() {
             </div>
             <div className="footer-bottom">
                 <p>© {new Date().getFullYear()} <span>Nordholm El &amp; Bygg</span>. Alla rättigheter förbehållna.</p>
-                <p>Org.nr: 556XXX-XXXX</p>
+                <p>Org.nr: 559590-9408</p>
             </div>
         </footer>
     );

@@ -181,7 +181,6 @@
 .hero-photo-row-item {
     position: relative;
     background: var(--paper-soft);
-    border: 1.5px dashed var(--line);
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
@@ -366,7 +365,6 @@
 .photo-tile {
     position: relative;
     background: var(--paper);
-    border: 1.5px dashed var(--line);
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
