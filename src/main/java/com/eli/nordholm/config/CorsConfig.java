@@ -15,7 +15,7 @@ public class CorsConfig {
 
     // Comma-separated list, e.g.:
     // http://localhost:5173,http://localhost:5174,https://*.vercel.app,https://your-domain.com
-    @Value("${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174,https://*.vercel.app}")
+    @Value("${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174,https://*.vercel.app,https://www.nordholmel.se}")
     private String allowedOrigins;
 
     @Bean
