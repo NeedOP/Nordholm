@@ -19,21 +19,22 @@ export default function About() {
                 <div className="about-block">
                     <div className="about-text">
                         <div className="eyebrow">Vår historia</div>
-                        <h2>Från litet bolag<br />till etablerat varumärke</h2>
+                        <h2>Ett bolag som har<br />en standard</h2>
                         <p>
-                            Nordholm El &amp; Bygg startades för över ett decennium sedan av
-                            grundaren Erik Nordholm, med en vilja att kombinera gedigen
-                            hantverksskicklighet med modern teknik och kundservice i världsklass.
+                            Vi är ett nytt elinstallationsföretag med lång erfarenhet inom elbranschen.
+                            Vårt företag bygger på gedigen kompetens, yrkesstolthet och många års praktisk
+                            erfarenhet av elinstallationer för privatpersoner, företag och bostadsrättsföreningar.
                         </p>
                         <p>
-                            Idag är vi ett fullserviceföretag inom el och bygg med erfarna och
-                            certifierade medarbetare. Vi har genomfört hundratals projekt i
-                            Stockholmsregionen — från lägenhetsrenoveringar till kommersiella
-                            fastigheter.
+                            Som registrerat elinstallationsföretag hos Elsäkerhetsverket arbetar vi enligt
+                            gällande lagar, föreskrifter och branschstandarder. Vi har F-skatt och ansvarsförsäkring,
+                            vilket ger dig som kund en extra trygghet genom hela projektet.
                         </p>
                         <p>
-                            Vår tillväxt bygger på ett enkelt recept: håll det du lovar, leverera
-                            mer än förväntat och behandla varje kund som en långsiktig partner.
+                            Vi sätter alltid säkerhet, kvalitet och noggrannhet i första hand.
+                            Oavsett om det gäller felsökning, service, renovering eller
+                            nyinstallation levererar vi hållbara lösningar med ett professionellt
+                            utförande och ett personligt bemötande.
                         </p>
                     </div>
                     <div className="about-panel">
